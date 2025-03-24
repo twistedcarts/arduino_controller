@@ -6,7 +6,7 @@ import threading
 
 status_message = "initializing arduino..."
 try:
-    arduino = serial.Serial('COM7', 9500, timeout=1)
+    arduino = serial.Serial('COM7', 9500, timeout=1) # change "COM7" and "9500" to your specific arduino setup, the com port will vary between devices
     status_message = "initialized arduino"
 except serial.SerialException:
     status_message = "failed to initialize arduino"
