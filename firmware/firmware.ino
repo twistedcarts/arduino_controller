@@ -1,13 +1,22 @@
 #include <Mouse.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 
 bool is_active = false;
 int recoil_y = 6;
 int recoil_x = 1;
 String weapon_name = "MPX";
 
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+unsigned long last_move_time = 0;
+
 void setup() {
     Serial.begin(9500);
     Mouse.begin();
+    lcd.init();
+    lcd.backlight();
+    update_lcd();
 }
 
 void loop() {
@@ -16,10 +25,13 @@ void loop() {
 
         if (input == "1") {
             is_active = true;
+            update_lcd();
         } else if (input == "0") {
             is_active = false;
+            update_lcd();
         } else if (input.startsWith("CFG:")) {
             parse_weapon_config(input.substring(4));
+            update_lcd();
         }
     }
 
@@ -55,4 +67,13 @@ void parse_weapon_config(String cfg) {
         recoil_y = cfg.substring(first_comma + 1, second_comma).toInt();
         recoil_x = cfg.substring(second_comma + 1).toInt();
     }
+}
+
+void update_lcd() {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print(is_active ? "Active" : "Inactive");
+    lcd.setCursor(0, 1);
+    lcd.print("WPN: ");
+    lcd.print(weapon_name);
 }
