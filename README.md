@@ -18,3 +18,5 @@ This software is provided "as-is," without any express or implied warranty. In n
 ## Fair Use
 
 This software is provided for educational and research purposes only. It is not affiliated with, endorsed, or sponsored by Ubisoft or any of its affiliates. Use of this software may violate the terms of service of Tom Clancy's Rainbow Six Siege and could result in bans or other penalties. The authors do not encourage or condone any illegal activities related to the use of this software.
+
+![image](https://github.com/user-attachments/assets/514631f5-d415-4040-9704-4d4b47e2eab7)
